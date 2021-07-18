@@ -1,89 +1,1403 @@
+
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+<html lang="en">
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/8.7.1/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/8.7.1/firebase-auth.js"></script>
-    <script defer src="/__/firebase/8.7.1/firebase-database.js"></script>
-    <script defer src="/__/firebase/8.7.1/firebase-firestore.js"></script>
-    <script defer src="/__/firebase/8.7.1/firebase-functions.js"></script>
-    <script defer src="/__/firebase/8.7.1/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/8.7.1/firebase-storage.js"></script>
-    <script defer src="/__/firebase/8.7.1/firebase-analytics.js"></script>
-    <script defer src="/__/firebase/8.7.1/firebase-remote-config.js"></script>
-    <script defer src="/__/firebase/8.7.1/firebase-performance.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <link rel='stylesheet' href='https://npmcdn.com/flickity@2/dist/flickity.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css'>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <script src="flickity.pkgd.min.js"></script>
+    <script src="flickity.pkgd.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golori</title>
+</head>
+<Style>
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        margin: 0px;
+        padding: 0px;
+        scroll-behavior: smooth;
+    }
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+    main {
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+
+        /* border: 3px solid red; */
+        margin: 0px 50px;
+        font-family: 'Raleway', sans-serif;
+    }
+
+    nav {
+        /* border: 3px solid green; */
+        display: flex;
+        height: 80px;
+        width: 100%;
+
+    }
+
+    .header {
+        /* border: 3px solid black; */
+        /* border: 3px solid black; */
+        width: 100%;
+        height: 80px;
+        padding: 20px;
+        padding-left: 0px;
+        font-size: 30px;
+
+        transition: all 0.5s ease-in-out;
+        cursor: pointer;
+    }
+
+    .header:hover {
+        text-shadow: -17px 4px 5px black;
+        opacity: 0.5;
+    }
+
+    .sidehead {
+        text-align: right;
+        width: 100%;
+
+        padding: 27px;
+        padding-right: 0px;
+        height: 80px;
+        /* border: 3px solid blue; */
+    }
+
+    a {
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.5s ease-in-out;
+
+
+    }
+
+    .sidehead a {
+        color: #000000;
+        font-weight: bolder;
+        padding-left: 20px;
+
+    }
+
+    a:hover {
+        text-shadow: -17px 4px 5px black;
+
+        opacity: 0.5;
+
+    }
+
+    .hero {
+        /* border: 3px solid yellow; */
+        width: 100%;
+        height: 400px;
+        background: #8EC1E6;
+        margin-bottom: 50px;
+
+    }
+
+    .category_card {
+        /* border: 3px solid purple; */
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .men {
+        /* border: 3px solid green; */
+        width: 100%;
+
+    }
+
+    .Women {
+        /* border: 3px solid blue; */
+        width: 100%;
+
+    }
+
+    .slider {
+        height: 810px;
+        /* border: 3px solid red; */
+    }
+
+    footer h1 {
+        position: relative;
+        font-weight: bolder;
+
+    }
+
+    footer h1::before {
+        content: "";
+        width: 43%;
+        height: 4px;
+        top: 88%;
+        background: black;
+        transform: translate(-50%, 188%);
+        left: 50%;
+        position: absolute;
+    }
+
+    .flickity-viewport {
+        height: 750px;
+    }
+
+    .card {
+        height: 680px;
+        width: 100%;
+
+        text-align: center;
+        /* border: 3px solid black; */
+    }
+
+    .cardimg {
+        margin-top: 20px;
+        height: 370px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        border-radius: 20px;
+    }
+
+    .slidehead {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .cardtype1 {
+        background: #FFCED7;
+    }
+
+    .cardtype2 {
+        background: #C0B5D6;
+    }
+
+
+    .cardtype3 {
+        background: #FFCAB9;
+    }
+
+
+
+    footer {
+        text-align: center;
+        height: 150px;
+        /* border: 3px solid black; */
+        display: grid;
+        place-items: center;
+    }
+
+    .clearfix {
+        clear: both;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+
+
+
+
+    /* Rating Star Widgets Style */
+    .rating-stars ul {
+        list-style-type: none;
+        padding: 0;
+
+        -moz-user-select: none;
+        -webkit-user-select: none;
+    }
+
+    .rating-stars ul>li.star {
+        display: inline-block;
+
+    }
+
+    /* Idle State of the stars */
+    .rating-stars ul>li.star>i.fa {
+        font-size: 2.5em;
+        /* Change the size of the stars */
+        color: #ccc;
+        /* Color on idle state */
+    }
+
+    /* Hover state of the stars */
+    .rating-stars ul>li.star.hover>i.fa {
+        color: #FFCC36;
+    }
+
+    /* Selected state of the stars */
+    .rating-stars ul>li.star.selected>i.fa {
+        color: #FF912C;
+    }
+
+    .carddeal {
+        /* border:3px solid blue; */
+        padding: 16px;
+        height: 75px;
+        width: 55%;
+        background: #FFDD87;
+        margin: 0 auto;
+        text-align: center;
+        color: black;
+
+    }
+
+    .men {
+        background: #EBC6BC;
+        flex-basis: 45%;
+
+    }
+
+    .Footwear {
+        background: #EBC6BC;
+    }
+
+    .Women {
+        flex-basis: 50%;
+    }
+
+    .Watch {
+        flex-basis: 50%;
+
+    }
+
+    .Footwear {
+        flex-basis: 45%;
+    }
+
+    .Watch .category-text {
+        width: 200px;
+        transform: translate(139%, 268%);
+    }
+
+    .men,
+    .Women,
+    .Watch,
+    .Footwear {
+        position: relative;
+        border-radius: 20px;
+        height: 536px;
+        margin-top: 40px;
+    }
+
+    .category_card img {
+        height: 80%;
+        bottom: 0px;
+        position: absolute;
+        left: 50px;
+    }
+
+    .Women {
+        background: #AFD3B6;
+        margin-right: 40px;
+    }
+
+    .Watch {
+        background: #AFD3B6;
+    }
+
+    #amazone {
+        height: 75px;
+    }
+
+    .category-text {
+        /* border:3px solid red; */
+        width: 150px;
+        text-align: center;
+        position: absolute;
+        transform: translate(220%, 134%);
+    }
+
+    .category-text::before {
+        width: 132px;
+        content: "Hurry Up";
+        font-size: 22px;
+        position: absolute;
+        transform: translate(-26%, 389%);
+    }
+
+    #arrow1 {
+        position: absolute;
+
+        height: 20px;
+        width: 96px;
+        left: 35px;
+        top: 173px;
+    }
+
+    #arrow2 {
+        position: absolute;
+        top: 176px;
+        left: 14px;
+        height: 20px;
+        width: 96px;
+    }
+
+    .arrow {
+        transform: translate(15%, 228%);
+        animation-name: up-down;
+        animation-duration: 1.5s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-fill-mode: both;
+    }
+
+    @keyframes up-down {
+        0% {
+            transform: translateX(20px);
+
         }
-      });
-    </script>
-  </body>
+
+        100% {
+            transform: translateX(100px);
+        }
+    }
+
+    span {
+        font-weight: bolder;
+    }
+
+    .cardimg img {
+        height: 100%;
+        padding-top: 20px;
+        width: 100%;
+        object-fit: contain;
+    }
+
+    h1 {
+        margin: 0px;
+    }
+
+    .cardprice span {
+        padding-left: 20px;
+        font-size: 25px;
+    }
+
+    .hero {
+        height: 445px;
+        margin-top: 90px;
+    }
+
+    .hero #style2 {
+        height: 500px;
+        position: absolute;
+        transform: translate(255%, -11%);
+    }
+
+    #flower {
+        height: 129px;
+        transform: translate(618%, 224%);
+    }
+
+    .offer-text {
+        /* border:3px solid red; */
+        width: 50%;
+        text-align: center;
+        margin: -88px 43px;
+        color: white;
+        position: relative;
+        height: 351px;
+
+    }
+
+    button {
+        margin-left: 20%;
+        height: 60px;
+        margin-top: 55px;
+        border-radius: 50px;
+        border: none;
+        color: white;
+        background: #2F2C2C;
+        width: 14%;
+        transition: all .4s ease-in-out;
+    }
+
+    button:hover,
+    button:active {
+        background: rgb(230, 228, 228);
+        color: black;
+        cursor: pointer;
+    }
+
+    .offer-text span {
+        display: block;
+
+        font-size: 40px;
+    }
+
+    .famazone {
+        transform: translate(0%, 38%);
+
+        height: 40px;
+    }
+
+    a {
+        color: #4D7DDA;
+        font-size: 18px;
+    }
+
+    #stars {
+        width: 350px;
+        height: 58px;
+        font-size: 10px;
+
+        padding: 13px;
+    }
+
+    .carddelivery {
+        padding: 8px;
+    }
+
+
+
+    .carddelivery span {
+        color: #4D7DDA;
+    }
+
+    .flickity-page-dots .dot {
+        width: 30px;
+        height: 30px;
+    }
+
+    /* .flickity-enabled.is-draggable {
+  box-shadow: 6px -5px 37px -24px black;} */
+    .flickity-button {
+        display: none;
+    }
+
+    .flickity-page-dots {
+        bottom: -68px
+    }
+
+    .offer-text #only {
+        padding: 20px;
+        padding-top: 0px;
+        font-size: 22px;
+    }
+
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+
+        opacity: 0;
+        width: 100%;
+        /* Full width */
+        height: 0%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        /* background-color: rgba(0, 0, 0, 0.4); */
+        /* Black w/ opacity */
+        transition: all 0.6s ease-in;
+    }
+
+    .modal2 {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+
+        opacity: 0;
+        width: 100%;
+        /* Full width */
+        height: 0%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        /* background-color: rgba(0, 0, 0, 0.4); */
+        /* Black w/ opacity */
+        transition: all 0.6s ease-in;
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 9% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        height: 70%;
+        text-align: center;
+        border-radius: 50px;
+        text-align: center;
+        border-radius: 50px;
+
+    }
+
+    .modal-content2 {
+        background-color: #fefefe;
+        margin: 9% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        height: 70%;
+        text-align: center;
+        border-radius: 50px;
+        text-align: center;
+        border-radius: 50px;
+
+    }
+
+    .modal.added {
+        height: 100%;
+
+        opacity: 1;
+    }
+
+    .modal2.added {
+        height: 100%;
+
+        opacity: 1;
+    }
+
+
+    .modal-content h1 {
+        margin: 0px 20px;
+        cursor: pointer;
+        font-size: 1.8em;
+        opacity: 0;
+        color: black;
+        transition: opacity 0.5s ease-in;
+    }
+
+    #modi {
+        opacity: 1;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .modal-content2 h1 {
+        margin: 20px 20px;
+        cursor: pointer;
+        font-size: 1.8em;
+        opacity: 0;
+        color: black;
+        transition: opacity 0.5s ease-in;
+    }
+
+    #modh.opa {
+        opacity: 1;
+
+    }
+
+    #modh2.opa {
+        opacity: 1;
+
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 55px;
+        font-weight: bold;
+    }
+
+    .close2 {
+        color: #aaa;
+        float: right;
+        font-size: 55px;
+        font-weight: bold;
+    }
+
+    .modal-content h1:hover,
+    .modal-content h1:focus {
+        color: gray;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .close2:hover,
+    .close2:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .scroll-btn {
+        z-index: 999;
+        position: fixed;
+        background: #3a6cf4;
+        color: #fff;
+        width: 150px;
+        height: 45px;
+        right: 0;
+        bottom: 10px;
+        font-size: 10px;
+        text-align: center;
+        line-height: 45px;
+        border-radius: 3px;
+        cursor: pointer;
+        pointer-events: none;
+        opacity: 0;
+        transition: all 0.3s ease;
+
+    }
+
+    .scroll-btn.active {
+        right: 20px;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .discount {
+        font-weight: bolder;
+        font-size: 20px;
+    }
+
+    /* .maintain{
+        display: none;
+    } */
+    /* @media(max-width:1266px){
+        main{
+            display:none;
+        }
+        body{
+            height:100vh;
+            display:grid;
+            place-items: center;
+        }
+        .maintain{
+            display:block;
+            font-size: clamp(2px,2vw,13vw);;
+         
+        }
+    } */
+    .mod-btn {
+        margin: 0px;
+    }
+
+    .mod {
+        height: 46px;
+        margin: 14px;
+        width: 137px;
+
+    }
+
+    .mod1 {
+        width: 44%;
+        height: 46px;
+        margin: 14px;
+        color: black;
+        background: white;
+        border: 2px solid black;
+
+    }
+
+    .modimg {
+        height: 240px;
+        width: 100%;
+        margin: 0 auto;
+
+    }
+
+    .modimg img {
+        height: 194px;
+        width: 260px;
+
+
+    }
+</Style>
+
+<body>
+    <!-- <div class="maintain">
+        <h1>Only Desktop Website Available Currently </h1>
+    </div> -->
+    <main>
+        <nav>
+            <div class="header">
+                GOLORI ENTERPRISES
+            </div>
+            <div class="sidehead">
+                <a href="#category_card">Category</a>
+                <a href="#slider">Offers</a>
+            </div>
+        </nav>
+        <div class="hero">
+            <img id="style2" src="style 2.png">
+            <img id="flower" src="Group 19.png">
+            <div class="offer">
+                <div class="offer-text">
+                    <h3>DEAL OF THE DAY <span>FOR WOMEN'S APPRAEL</span></h3>
+
+
+                    <p id="only">
+                        Only on
+                    </p>
+                    <img id="amazone" src="Group 2.png">
+                    <p style="margin-top: 20px;">Amazon Brand - Symbol, AKA CHIC & more</p>
+                </div>
+
+            </div>
+            <button>Shop Now</button>
+        </div>
+
+        <div id="category_card" class="category_card">
+            <div class="Women"><img src="office 1.png">
+                <div class="category-text">
+                    <h1> Deals For<span>
+                            WOMENS</span></h1>
+                    <img id="arrow1" class="arrow" src="Union.png">
+                </div>
+            </div>
+            <div class="men"><img src="sports 2.png">
+                <div class="category-text">
+                    <h1> Deals For<span>
+                            MENS</span></h1>
+                    <img id="arrow2" class="arrow" src="Union.png">
+                </div>
+            </div>
+            <div class="Watch"><img src="Group 24.png">
+                <div class="category-text">
+                    <h1> Deals For<span>
+                            Wrist Watch</span></h1>
+                    <img id="arrow1" class="arrow" src="Union.png">
+                </div>
+            </div>
+            <div class="Footwear"><img src="Group 25 (1).png">
+                <div class="category-text">
+                    <h1> Deals For<span>
+                            Footwear</span></h1>
+                    <img id="arrow2" class="arrow" src="Union.png">
+                </div>
+            </div>
+
+        </div>
+
+        <div id="slider" class="slider">
+            <div class="slidehead">
+                <h2>Women's Apparel</h2>
+                <a>View All</a>
+            </div>
+            <div class="carousel" data-flickity='{ "groupCells": true }'>
+
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype1"><img src="model 2.png"></div>
+                        <div class="cardtitle">
+                            <h1>AKA CHIC</h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Women's Relaxed Fit Jeans</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype2"><img src="people 2.png"></div>
+                        <div class="cardtitle">
+                            <h1>Amazon Brand - Symbol</h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Women's Relaxed Joggers Work Pants</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype3"><img src="fashion 1.png"></div>
+                        <div class="cardtitle">
+                            <h1>SAFANA</h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Women's Regular fit Top</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype3"><img src="womens1.png"></div>
+                        <div class="cardtitle">
+                            <h1>DHRUVI</h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Women's Regular fit Top</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype3"><img src="womens2.png"></div>
+                        <div class="cardtitle">
+                            <h1>SKY FAB</h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Women's Regular fit Top</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype3"><img src="fashion 1.png"></div>
+                        <div class="cardtitle">
+                            <h1>SAFANA</h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Women's Regular fit Top</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider">
+            <div class="slidehead">
+                <h2>Men's Apparel</h2>
+                <a>View All</a>
+            </div>
+            <div class="carousel" data-flickity='{ "groupCells": true }'>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype1"><img src="people (3) 1.png"></div>
+                        <div class="cardtitle">
+                            <h1>Jack & Jones</h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Men's Regular fit Polo</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <button class="mod">Get the product</button>
+                        <button class="mod1">Get Money Instead</button>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype2"><img src="people (2) 1.png"></div>
+                        <div class="cardtitle">
+                            <h1>Red Tape</h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Men's Regular fit Casual Shirt</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <button class="mod">Get the product</button>
+                        <button class="mod1">Get Money Instead</button>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype3"><img src="people (1) 1.png"></div>
+                        <div class="cardtitle">
+                            <h1>Allen Solly
+                            </h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Men's Plain Slim Fit Casual Shirt</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <button class="mod">Get the product</button>
+                        <button class="mod1">Get Money Instead</button>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype1"><img src="people (3) 1.png"></div>
+                        <div class="cardtitle">
+                            <h1>Jack & Jones</h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Men's Regular fit Polo</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <button class="mod">Get the product</button>
+                        <button class="mod1">Get Money Instead</button>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype2"><img src="people (2) 1.png"></div>
+                        <div class="cardtitle">
+                            <h1>Red Tape</h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Men's Regular fit Casual Shirt</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <button class="mod">Get the product</button>
+                        <button class="mod1">Get Money Instead</button>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype3"><img src="people (1) 1.png"></div>
+                        <div class="cardtitle">
+                            <h1>Allen Solly
+                            </h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Men's Plain Slim Fit Casual Shirt</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <button class="mod">Get the product</button>
+                        <button class="mod1">Get Money Instead</button>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider">
+            <div class="slidehead">
+                <h2>Watch</h2>
+                <a>View All</a>
+            </div>
+            <div class="carousel" data-flickity='{ "groupCells": true }'>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype1"><img src="Qt1.png"></div>
+                        <div class="cardtitle">
+                            <h1>Jack & Jones</h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Men's Regular fit Polo</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <button class="mod">Get the product</button>
+                        <button class="mod1">Get Money Instead</button>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype2"><img src="watch.jpg"></div>
+                        <div class="cardtitle">
+                            <h1>Red Tape</h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Men's Regular fit Casual Shirt</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <button class="mod">Get the product</button>
+                        <button class="mod1">Get Money Instead</button>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype3"><img src="Qt1.png"></div>
+                        <div class="cardtitle">
+                            <h1>Allen Solly
+                            </h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Men's Plain Slim Fit Casual Shirt</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <button class="mod">Get the product</button>
+                        <button class="mod1">Get Money Instead</button>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype1"><img src="Qt1.png"></div>
+                        <div class="cardtitle">
+                            <h1>Jack & Jones</h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Men's Regular fit Polo</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <button class="mod">Get the product</button>
+                        <button class="mod1">Get Money Instead</button>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype2"><img src="Qt1.png"></div>
+                        <div class="cardtitle">
+                            <h1>Red Tape</h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Men's Regular fit Casual Shirt</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <button class="mod">Get the product</button>
+                        <button class="mod1">Get Money Instead</button>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype3"><img src="Qt1.png"></div>
+                        <div class="cardtitle">
+                            <h1>Allen Solly
+                            </h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Men's Plain Slim Fit Casual Shirt</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <button class="mod">Get the product</button>
+                        <button class="mod1">Get Money Instead</button>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider">
+            <div class="slidehead">
+                <h2>Footwear</h2>
+                <a>View All</a>
+            </div>
+            <div class="carousel" data-flickity='{ "groupCells": true }'>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype1"><img src="Qt2.png"></div>
+                        <div class="cardtitle">
+                            <h1>Jack & Jones</h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Men's Regular fit Polo</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <button class="mod">Get the product</button>
+                        <button class="mod1">Get Money Instead</button>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype2"><img src="Qt2.png"></div>
+                        <div class="cardtitle">
+                            <h1>Red Tape</h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Men's Regular fit Casual Shirt</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <button class="mod">Get the product</button>
+                        <button class="mod1">Get Money Instead</button>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype3"><img src="Qt2.png"></div>
+                        <div class="cardtitle">
+                            <h1>Allen Solly
+                            </h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Men's Plain Slim Fit Casual Shirt</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <button class="mod">Get the product</button>
+                        <button class="mod1">Get Money Instead</button>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype1"><img src="Qt2.png"></div>
+                        <div class="cardtitle">
+                            <h1>Jack & Jones</h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Men's Regular fit Polo</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <button class="mod">Get the product</button>
+                        <button class="mod1">Get Money Instead</button>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype2"><img src="Qt2.png"></div>
+                        <div class="cardtitle">
+                            <h1>Red Tape</h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Men's Regular fit Casual Shirt</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <button class="mod">Get the product</button>
+                        <button class="mod1">Get Money Instead</button>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+                <div class="carousel-cell">
+                    <div class="card">
+                        <div class="cardimg cardtype3"><img src="Qt2.png"></div>
+                        <div class="cardtitle">
+                            <h1>Allen Solly
+                            </h1>
+                        </div>
+                        <div class="cardpara">
+                            <p>Men's Plain Slim Fit Casual Shirt</p>
+                        </div>
+
+                        <div class="carddeal">
+                            <p>DEAL OF THE DAY</p> <span class="discount">(68% off)</span>
+                        </div>
+                        <button class="mod">Get the product</button>
+                        <button class="mod1">Get Money Instead</button>
+                        <div class="cardprice">M.R.P.: ₹2,399.0<span>at ₹779</span></div>
+                        <div class="carddelivery">FREE Delivery : <span>Details</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <h1>Thanks For Visiting!</h1>
+        </footer>
+    </main>
+    <!-- extras -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div id="modalcon" class="modal-content">
+            <span class="close">&times;</span>
+            <div class="mod-text">
+                <div class="modimg">
+                    <img src="Messenger-pana (3) 1.svg">
+                    <h1 id=modi>Congratulations!!</h1>
+                </div>
+                <h1 id="modh" class=" "> The Product of your choosing will be delivered to you Shortly</h1>
+                <!-- <h1 id="modh2" class=" ">Hi There Product Amount of Your Choosing will be Credited to Your Account Shortly</h1> -->
+            </div>
+        </div>
+    </div>
+    <div id="myModal2" class="modal2">
+        <!-- Modal content -->
+        <div id="modalcon2" class="modal-content2">
+            <span class="close2">&times;</span>
+
+            <div class="mod-text2">
+                <div class="modimg">
+                    <img src="Banknote-pana 1.svg">
+                    <h1 id=modi>Congratulations!!</h1>
+                </div>
+                <!-- <h1 id="modh" class=" ">Hi There Product of Your Choosing will be delivered to you Shortly</h1> -->
+                <h1 id="modh2" class=" ">The Product amount of Your choosing will be credited to Your Account Shortly
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div id="scroll-btn" class="scroll-btn">
+        <h1>Let's Go To Top</h1>
+    </div>
+    <!-- extras -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/8.7.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="/__/firebase/8.7.1/firebase-analytics.js"></script>
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="./script.js"></script>
+<script>
+    var span = document.getElementsByClassName("close")[0];
+    var span2 = document.getElementsByClassName("close2")[0];
+    var btns = document.getElementsByClassName("mod");
+    var btns2 = document.getElementsByClassName("mod1");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener('click', (e) => {
+
+            document.body.style.overflowY = "hidden";
+            document.getElementById("myModal").style.display = "block";
+            document.getElementById("myModal").style.overflowY = "hidden";
+
+            setTimeout(function () {
+                document.getElementById("myModal").classList.toggle("added");
+            }, 100)
+            setTimeout(function () {
+                document.getElementById("modh").classList.add("opa");
+            }, 1000);
+        });
+
+    }
+    // for second modal
+    for (var i = 0; i < btns2.length; i++) {
+        btns2[i].addEventListener('click', (e) => {
+
+            document.body.style.overflowY = "hidden";
+            document.getElementById("myModal2").style.display = "block";
+            document.getElementById("myModal2").style.overflowY = "hidden";
+
+            setTimeout(function () {
+                document.getElementById("myModal2").classList.toggle("added");
+            }, 100)
+            setTimeout(function () {
+                document.getElementById("modh2").classList.add("opa");
+            }, 1000);
+        });
+
+    }
+
+
+    window.addEventListener("scroll", function () {
+        document.getElementById("scroll-btn").classList.toggle("active", window.scrollY > 500);
+
+    });
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+
+        // document.getElementById("myModal").style.height = "0%";
+        document.getElementById("myModal").classList.remove("added");
+        document.getElementById("modh").classList.remove("opa");
+
+
+    }
+    span2.onclick = function () {
+
+        // document.getElementById("myModal").style.height = "0%";
+        document.getElementById("myModal2").classList.remove("added");
+        document.getElementById("modh2").classList.remove("opa");
+
+
+    }
+    // When the user clicks anywhere outside of the modal, close it
+    document.getElementById("scroll-btn").addEventListener("click", () => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    });
+
+
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
 </html>
